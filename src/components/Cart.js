@@ -119,7 +119,7 @@ function Cart() {
         <FaShoppingCart className={styles.emptyCartIcon} />
         <h2 className={styles.emptyCartTitle}>Your cart is empty</h2>
         <p className={styles.emptyCartText}>Looks like you haven't added any products to your cart yet.</p>
-        <Link to="/products" className={styles.continueShopping}>
+        <Link to="/Product" className={styles.continueShopping}>
           <FaArrowLeft /> Continue Shopping
         </Link>
       </div>
@@ -230,7 +230,7 @@ function Cart() {
                 Proceed to Checkout
               </button>
               
-              <Link to="/products" className={styles.continueShoppingLink}>
+              <Link to="/Product" className={styles.continueShoppingLink}>
                 Continue Shopping
               </Link>
               

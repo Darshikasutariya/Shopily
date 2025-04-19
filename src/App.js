@@ -10,15 +10,29 @@ import ProductDetail from './components/ProductDetail';
 import ProductState from './Context/products/productState';
 import About from './components/About';
 import Contact from './components/Contact';
+import { useContext } from 'react';
+import productContext from './Context/products/productContext';
+import ToastContainer from './components/ToastContainer';
 
 function App() {
   return (
     <>
     <ProductState>
-    <Navbar/>
-      
-        <Routes>
+      <AppContent />
+    </ProductState>
+    </>
+  );
+}
 
+// Separate component to use context
+function AppContent() {
+  const { toasts, removeToast } = useContext(productContext);
+  
+  return (
+    <>
+      <Navbar/>
+      
+      <Routes>
         <Route exact path='/' element={<Home/>} />
         <Route exact path='/Account' element={<Account/>} />
         <Route exact path='/Product' element={<Product/>} />
@@ -26,11 +40,12 @@ function App() {
         <Route path='/product/:id' element={<ProductDetail/>}></Route>
         <Route exact path='/about' element={<About/>} ></Route>
         <Route exact path='/contact' element={<Contact/>} ></Route>
-
-        </Routes>
+      </Routes>
       
       <Footer/>
-    </ProductState>
+      
+      {/* Toast notifications */}
+      <ToastContainer toasts={toasts} removeToast={removeToast} />
     </>
   );
 }

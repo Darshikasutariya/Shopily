@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaShoppingCart, FaUser, FaSearch, FaBars, FaTimes } from 'react-icons/fa'
 import styles from '../CSS/Navbar.module.css'
+import productContext from '../Context/products/productContext'
+
+
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -11,6 +14,13 @@ function Navbar() {
   const searchInputRef = useRef(null)
   const location = useLocation()
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  
+  // Get cart data from context
+  const context = useContext(productContext)
+  const { getCartItemCount } = context
+  
+  // Calculate total items in cart
+  const cartItemCount = getCartItemCount()
   
   // Check if viewport is mobile
   const isMobile = windowWidth < 768
@@ -147,7 +157,7 @@ function Navbar() {
             <Link to="/Cart" className={styles.actionLink}>
               <button className={styles.actionButton} aria-label="Shopping Cart">
                 <FaShoppingCart className={styles.icon} />
-                <span className={styles.badge}>3</span>
+                {cartItemCount > 0 && <span className={styles.badge}>{cartItemCount}</span>}
               </button>
             </Link>
           </div>

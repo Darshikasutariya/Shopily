@@ -37,8 +37,7 @@ function ProductItem(props) {
         // Add to cart functionality
         if (typeof addToCart === 'function') {
             addToCart({...products, cartQuantity: 1})
-            // Show a small notification that item was added (in a real app)
-            alert(`${products.title} added to cart!`)
+            // Toast notification is now handled in the context
         }
     }
     
